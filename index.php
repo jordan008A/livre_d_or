@@ -30,3 +30,15 @@
     </div>
 </body>
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = htmlspecialchars($_POST["nom"]);
+    $message = htmlspecialchars($_POST["message"]);
+    $fullMessage = $nom . ": " . $message . "\n";
+
+    file_put_contents("messages.txt", $fullMessage, FILE_APPEND);
+    header("Location: index.php");
+    exit();
+}
+?>
